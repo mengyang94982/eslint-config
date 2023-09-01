@@ -1,0 +1,26 @@
+{
+  "name": "@dylanjs/eslint-config-vue",
+  "version": "0.0.1",
+  "description": "DylanJS's ESLint config",
+  "author": "Dylan <my466879168@gmail.com> (https://github.com/mengyang94982/)",
+  "license": "MIT",
+  "keywords": [
+    "eslint-config"
+  ],
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "peerDependencies": {
+    "eslint": ">=7.4.0"
+  },
+  "dependencies": {
+    "@dylanjs/eslint-config-basic": "workspace:*",
+    "@dylanjs/eslint-config-ts": "workspace:*",
+    "eslint-plugin-vue": "^9.17.0",
+    "local-pkg": "^0.4.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.47.0"
+  }
+}

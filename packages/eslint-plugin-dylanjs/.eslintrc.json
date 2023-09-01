@@ -1,0 +1,6 @@
+{
+  "extends": "@dylanjs",
+  "plugins": [
+    "dylanjs"
+  ]
+}

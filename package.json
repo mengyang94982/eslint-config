@@ -1,0 +1,22 @@
+{
+  "name": "@dylanjs/eslint-config-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Dylan <my466879168@gmail.com> (https://github.com/mengyang94982/)",
+  "license": "MIT",
+  "scripts": {
+    "lint": "pnpm -r run stub && eslint .",
+    "test": "pnpm -r run test",
+    "build": "pnpm -r run build",
+    "prepare": "pnpm -r run stub",
+    "release": "bumpp -r && pnpm -r publish"
+  },
+  "devDependencies": {
+    "@dylanjs/eslint-config": "workspace:*",
+    "bumpp": "^9.2.0",
+    "eslint": "^8.47.0",
+    "eslint-plugin-dylanjs": "link:./packages/eslint-plugin-dylanjs",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6"
+  }
+}
