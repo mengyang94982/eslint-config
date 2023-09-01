@@ -1,6 +1,6 @@
 {
   "name": "@dylanjs/eslint-config",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "DylanJS's ESLint config",
   "author": "Dylan <my466879168@gmail.com> (https://github.com/mengyang94982/)",
   "license": "MIT",
@@ -14,8 +14,6 @@
   "peerDependencies": {
     "eslint": ">=7.4.0"
   },
-  "dependencies": {
-  },
-  "devDependencies": {
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
