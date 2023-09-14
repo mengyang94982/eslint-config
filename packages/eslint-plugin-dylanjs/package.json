@@ -1,8 +1,7 @@
 {
   "name": "eslint-plugin-dylanjs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
-  "author": "Dylan <my466879168@gmail.com> (https://github.com/mengyang94982/)",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "files": [
@@ -11,7 +10,8 @@
   "scripts": {
     "build": "rimraf dist && unbuild",
     "stub": "unbuild --stub",
-    "test": "vitest"
+    "test": "vitest",
+    "prepublishOnly": "nr build"
   },
   "dependencies": {
     "@typescript-eslint/utils": "^6.4.1"

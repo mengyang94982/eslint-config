@@ -1,11 +1,11 @@
 {
   "name": "@dylanjs/eslint-config-monorepo",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "author": "Dylan <my466879168@gmail.com> (https://github.com/mengyang94982/)",
   "license": "MIT",
   "scripts": {
-    "lint": "pnpm -r run stub && eslint .",
+    "lint": "pnpm -r run stub && eslint . --fix",
     "test": "pnpm -r run test",
     "build": "pnpm -r run build",
     "prepare": "pnpm -r run stub",
