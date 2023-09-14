@@ -2,11 +2,11 @@
 const isInEditor = (process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI
 const offInEditor = isInEditor ? 'off' : 'error'
 
-module.extends = {
+module.exports = {
   env: {
     es6: true,
     browser: true,
-    node: true
+    node: true,
   },
   reportUnusedDisableDirectives: true,
   extends: [
@@ -49,16 +49,10 @@ module.extends = {
     // force exclude
     '**/.vitepress/cache',
   ],
-  plugins: [
-    'html',
-    'unicorn',
-    'dylanjs',
-    'no-only-tests',
-    'unused-imports',
-  ],
+  plugins: ['html', 'unicorn', 'dylanjs', 'no-only-tests', 'unused-imports'],
   settings: {
     'import/resolver': {
-      node: {extensions: ['.js', '.mjs']},
+      node: { extensions: ['.js', '.mjs'] },
     },
   },
   overrides: [
@@ -70,11 +64,20 @@ module.extends = {
         'jsonc/comma-dangle': ['error', 'never'],
         'jsonc/comma-style': ['error', 'last'],
         'jsonc/indent': ['error', 2],
-        'jsonc/key-spacing': ['error', {beforeColon: false, afterColon: true}],
+        'jsonc/key-spacing': [
+          'error',
+          { beforeColon: false, afterColon: true },
+        ],
         'jsonc/no-octal-escape': 'error',
-        'jsonc/object-curly-newline': ['error', {multiline: true, consistent: true}],
+        'jsonc/object-curly-newline': [
+          'error',
+          { multiline: true, consistent: true },
+        ],
         'jsonc/object-curly-spacing': ['error', 'always'],
-        'jsonc/object-property-newline': ['error', {allowMultiplePropertiesPerLine: true}],
+        'jsonc/object-property-newline': [
+          'error',
+          { allowMultiplePropertiesPerLine: true },
+        ],
       },
     },
     {
@@ -140,24 +143,19 @@ module.extends = {
           },
           {
             pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies$',
-            order: {type: 'asc'},
+            order: { type: 'asc' },
           },
           {
             pathPattern: '^resolutions$',
-            order: {type: 'asc'},
+            order: { type: 'asc' },
           },
           {
             pathPattern: '^pnpm.overrides$',
-            order: {type: 'asc'},
+            order: { type: 'asc' },
           },
           {
             pathPattern: '^exports.*$',
-            order: [
-              'types',
-              'import',
-              'require',
-              'default',
-            ],
+            order: ['types', 'import', 'require', 'default'],
           },
         ],
       },
@@ -178,7 +176,7 @@ module.extends = {
     {
       files: ['*.ts', '*.tsx', '*.mts', '*.cts'],
       rules: {
-        'no-void': ['error', {allowAsStatement: true}],
+        'no-void': ['error', { allowAsStatement: true }],
       },
     },
     {
@@ -228,7 +226,10 @@ module.extends = {
     'import/no-mutable-exports': 'error',
     'import/no-unresolved': 'off',
     'import/no-absolute-path': 'off',
-    'import/newline-after-import': ['error', {count: 1, considerComments: true}],
+    'import/newline-after-import': [
+      'error',
+      { count: 1, considerComments: true },
+    ],
     'import/no-self-import': 'error',
 
     // Common
@@ -240,24 +241,33 @@ module.extends = {
     'unused-imports/no-unused-imports': offInEditor,
     'unused-imports/no-unused-vars': [
       'warn',
-      {vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_'},
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
     ],
 
     'no-param-reassign': 'off',
     'array-bracket-spacing': ['error', 'never'],
-    'brace-style': ['error', 'stroustrup', {allowSingleLine: true}],
+    'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
     'block-spacing': ['error', 'always'],
     'camelcase': 'off',
-    'comma-spacing': ['error', {before: false, after: true}],
+    'comma-spacing': ['error', { before: false, after: true }],
     'comma-style': ['error', 'last'],
     'comma-dangle': ['error', 'always-multiline'],
     'no-constant-condition': 'warn',
     'no-debugger': 'error',
-    'no-console': ['error', {allow: ['warn', 'error']}],
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-cond-assign': ['error', 'always'],
     'func-call-spacing': 'off',
-    'key-spacing': ['error', {beforeColon: false, afterColon: true}],
-    'indent': ['error', 2, {SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1}],
+    'key-spacing': ['error', { beforeColon: false, afterColon: true }],
+    'indent': [
+      'error',
+      2,
+      { SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1 },
+    ],
     'no-restricted-syntax': [
       'error',
       'DebuggerStatement',
@@ -276,16 +286,32 @@ module.extends = {
     ],
     'no-restricted-globals': [
       'error',
-      {name: 'global', message: 'Use `globalThis` instead.'},
-      {name: 'self', message: 'Use `globalThis` instead.'},
+      { name: 'global', message: 'Use `globalThis` instead.' },
+      { name: 'self', message: 'Use `globalThis` instead.' },
     ],
     'no-restricted-properties': [
       'error',
-      {property: '__proto__', message: 'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.'},
-      {property: '__defineGetter__', message: 'Use `Object.defineProperty` instead.'},
-      {property: '__defineSetter__', message: 'Use `Object.defineProperty` instead.'},
-      {property: '__lookupGetter__', message: 'Use `Object.getOwnPropertyDescriptor` instead.'},
-      {property: '__lookupSetter__', message: 'Use `Object.getOwnPropertyDescriptor` instead.'},
+      {
+        property: '__proto__',
+        message:
+          'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.',
+      },
+      {
+        property: '__defineGetter__',
+        message: 'Use `Object.defineProperty` instead.',
+      },
+      {
+        property: '__defineSetter__',
+        message: 'Use `Object.defineProperty` instead.',
+      },
+      {
+        property: '__lookupGetter__',
+        message: 'Use `Object.getOwnPropertyDescriptor` instead.',
+      },
+      {
+        property: '__lookupSetter__',
+        message: 'Use `Object.getOwnPropertyDescriptor` instead.',
+      },
     ],
 
     // es6
@@ -317,19 +343,23 @@ module.extends = {
     'prefer-spread': 'error',
     'prefer-template': 'error',
     'template-curly-spacing': 'error',
-    'arrow-parens': ['error', 'as-needed', {requireForBlockBody: true}],
+    'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
     'generator-star-spacing': 'off',
-    'spaced-comment': ['error', 'always', {
-      line: {
-        markers: ['/'],
-        exceptions: ['/', '#'],
+    'spaced-comment': [
+      'error',
+      'always',
+      {
+        line: {
+          markers: ['/'],
+          exceptions: ['/', '#'],
+        },
+        block: {
+          markers: ['!'],
+          exceptions: ['*'],
+          balanced: true,
+        },
       },
-      block: {
-        markers: ['!'],
-        exceptions: ['*'],
-        balanced: true,
-      },
-    }],
+    ],
 
     // best-practice
     'array-callback-return': 'error',
@@ -349,7 +379,7 @@ module.extends = {
     'require-await': 'off',
     'no-return-assign': 'off',
     'operator-linebreak': ['error', 'before'],
-    'max-statements-per-line': ['error', {max: 1}],
+    'max-statements-per-line': ['error', { max: 1 }],
 
     // node
     'n/prefer-global/process': ['error', 'never'],
@@ -386,7 +416,10 @@ module.extends = {
     // Ban `new Array` as `Array` constructor's params are ambiguous
     'unicorn/no-new-array': 'error',
 
-    'no-use-before-define': ['error', {functions: false, classes: false, variables: true}],
+    'no-use-before-define': [
+      'error',
+      { functions: false, classes: false, variables: true },
+    ],
     'eslint-comments/disable-enable-pair': 'off',
     'import/no-named-as-default-member': 'off',
     'import/no-named-as-default': 'off',
@@ -404,7 +437,7 @@ module.extends = {
     ],
 
     // yml
-    'yml/quotes': ['error', {prefer: 'single', avoidEscape: false}],
+    'yml/quotes': ['error', { prefer: 'single', avoidEscape: false }],
     'yml/no-empty-document': 'off',
 
     // dylanjs

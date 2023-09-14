@@ -1,5 +1,3 @@
 module.exports = {
-  extends:[
-    '@dylanjs/eslint-config-vue'
-  ]
+  extends: ['@dylanjs/eslint-config-vue'],
 }

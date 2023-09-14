@@ -1,6 +1,6 @@
 {
   "name": "@dylanjs/eslint-config",
-  "version": "0.0.5",
+  "version": "0.0.4",
   "description": "DylanJS的ESLint配置文件",
   "author": "Dylan <my466879168@gmail.com> (https://github.com/mengyang94982/)",
   "license": "MIT",

@@ -9,7 +9,6 @@ import noCjsExports from './rules/no-cjs-exports'
 import noConstEnum from './rules/no-const-enum'
 import namedTupleSpacing from './rules/named-tuple-spacing'
 
-
 export default {
   rules: {
     'if-newline': ifNewline,

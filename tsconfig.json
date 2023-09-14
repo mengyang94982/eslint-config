@@ -6,10 +6,6 @@
     "moduleResolution": "Bundler",
     "esModuleInterop": true
   },
-  "include": [
-    "./packages/**/*.ts"
-  ],
-  "exclude": [
-    "./fixtures/**/*.*"
-  ]
+  "include": ["./packages/**/*.ts"],
+  "exclude": ["./fixtures/**/*.*"]
 }
