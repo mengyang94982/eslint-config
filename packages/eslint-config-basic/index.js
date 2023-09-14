@@ -385,7 +385,7 @@ module.exports = {
     // node
     // 使用proces  还是 require('process')  "error", "always" | "never"
     // 强制使用全局变量
-    "n/prefer-global/process": ["always"],
+    "n/prefer-global/process": "off",
     "n/prefer-global/buffer": ["error", "never"],
     "n/no-callback-literal": "off",
 
