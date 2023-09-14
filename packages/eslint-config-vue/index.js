@@ -39,7 +39,7 @@ module.exports = {
 
     // reactivity transform
     'vue/no-setup-props-reactivity-loss': 'off',
-
+    // 页面布局  我一般是先template 然后是script
     'vue/block-order': [
       'error',
       {
