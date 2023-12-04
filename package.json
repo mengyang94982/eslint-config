@@ -1,9 +1,24 @@
 {
-  "name": "@dylanjs/eslint-config-monorepo",
-  "version": "0.0.7",
-  "private": true,
+  "name": "@dylanjs/eslint-config",
+  "type": "module",
+  "version": "0.1.0",
   "author": "Dylan <my466879168@gmail.com> (https://github.com/mengyang94982/)",
+  "description": "dylanjs ESLint Config",
   "license": "MIT",
+  "keywords": [
+    "eslint-config"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "pnpm -r run stub && eslint . --fix",
     "test": "pnpm -r run test",
@@ -12,11 +27,12 @@
     "pbk": "pnpm -r publish",
     "release": "bumpp -r && pnpm -r publish --access public"
   },
+  "dependencies": {
+    "@stylistic/eslint-plugin": "^1.4.1"
+  },
   "devDependencies": {
-    "@dylanjs/eslint-config": "workspace:*",
     "bumpp": "^9.2.0",
     "eslint": "^8.47.0",
-    "eslint-plugin-dylanjs": "link:./packages/eslint-plugin-dylanjs",
     "rimraf": "^5.0.1",
     "typescript": "^5.1.6"
   }
