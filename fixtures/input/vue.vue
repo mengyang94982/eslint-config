@@ -16,7 +16,6 @@ import { ref } from 'vue'
 
 const greeting = ref(`Hello, Vue 3!${1}`)
 const counter = ref(0)
-const a = 1
 
 // Define a function
 function incrementCounter() {
