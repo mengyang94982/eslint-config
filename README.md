@@ -1,1 +1,1 @@
-# eslint-config
+# @dylanjs/eslint-config

@@ -1,30 +1,32 @@
 import { interopDefault } from '../utils'
-
-import type {
-  FlatConfigItem,
-  OptionsFiles,
-  OptionsHasTypeScript,
-  OptionsOverrides,
-  OptionsStylistic,
-} from '../types'
-
+import type { FlatConfigItem, OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic } from '../types'
 import { GLOB_VUE } from '../globs'
 
 export async function vue(
-  options: OptionsHasTypeScript &
-    OptionsOverrides &
-    OptionsStylistic &
-    OptionsFiles = {}
+  options: OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
 ): Promise<FlatConfigItem[]> {
-  const { files = [GLOB_VUE], overrides = {}, stylistic = true } = options
-  const { indent = 2 } = typeof stylistic === 'boolean' ? {} : stylistic
-  const [pluginVue, parserVue] = await Promise.all([
+  const {
+    files = [GLOB_VUE],
+    overrides = {},
+    stylistic = true,
+  } = options
+
+  const {
+    indent = 2,
+  } = typeof stylistic === 'boolean' ? {} : stylistic
+
+  const [
+    pluginVue,
+    parserVue,
+  ] = await Promise.all([
+    // @ts-expect-error missing types
     interopDefault(import('eslint-plugin-vue')),
     interopDefault(import('vue-eslint-parser')),
   ] as const)
+
   return [
     {
-      name: 'dylanjs:vue:setup',
+      name: 'antfu:vue:setup',
       plugins: {
         vue: pluginVue,
       },
@@ -39,41 +41,30 @@ export async function vue(
           },
           extraFileExtensions: ['.vue'],
           parser: options.typescript
-            ? ((await interopDefault(
-                import('@typescript-eslint/parser')
-              )) as any)
+            ? await interopDefault(import('@typescript-eslint/parser')) as any
             : null,
           sourceType: 'module',
         },
       },
-      name: 'dylanjs:vue:rules',
+      name: 'antfu:vue:rules',
       processor: pluginVue.processors['.vue'],
       rules: {
-        ...(pluginVue.configs.base.rules as any),
-        ...(pluginVue.configs['vue3-essential'].rules as any),
-        ...(pluginVue.configs['vue3-strongly-recommended'].rules as any),
-        ...(pluginVue.configs['vue3-recommended'].rules as any),
+        ...pluginVue.configs.base.rules as any,
+        ...pluginVue.configs['vue3-essential'].rules as any,
+        ...pluginVue.configs['vue3-strongly-recommended'].rules as any,
+        ...pluginVue.configs['vue3-recommended'].rules as any,
+
         'node/prefer-global/process': 'off',
-        'vue/block-order': [
-          'error',
-          {
-            order: ['template', 'script', 'style'],
-          },
-        ],
+
+        'vue/block-order': ['error', {
+          order: ['template', 'script', 'style'],
+        }],
         'vue/component-name-in-template-casing': ['error', 'PascalCase'],
         'vue/component-options-name-casing': ['error', 'PascalCase'],
         'vue/custom-event-name-casing': ['error', 'camelCase'],
-        'vue/define-macros-order': [
-          'error',
-          {
-            order: [
-              'defineOptions',
-              'defineProps',
-              'defineEmits',
-              'defineSlots',
-            ],
-          },
-        ],
+        'vue/define-macros-order': ['error', {
+          order: ['defineOptions', 'defineProps', 'defineEmits', 'defineSlots'],
+        }],
         'vue/dot-location': ['error', 'property'],
         'vue/dot-notation': ['error', { allowKeywords: true }],
         'vue/eqeqeq': ['error', 'smart'],
@@ -113,51 +104,36 @@ export async function vue(
         'vue/require-prop-types': 'off',
         'vue/space-infix-ops': 'error',
         'vue/space-unary-ops': ['error', { nonwords: false, words: true }],
-        ...(stylistic
+
+        ...stylistic
           ? {
               'vue/array-bracket-spacing': ['error', 'never'],
               'vue/arrow-spacing': ['error', { after: true, before: true }],
               'vue/block-spacing': ['error', 'always'],
-              'vue/block-tag-newline': [
-                'error',
-                {
-                  multiline: 'always',
-                  singleline: 'always',
-                },
-              ],
-              'vue/brace-style': [
-                'error',
-                'stroustrup',
-                { allowSingleLine: true },
-              ],
+              'vue/block-tag-newline': ['error', {
+                multiline: 'always',
+                singleline: 'always',
+              }],
+              'vue/brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
               'vue/comma-dangle': ['error', 'always-multiline'],
               'vue/comma-spacing': ['error', { after: true, before: false }],
               'vue/comma-style': ['error', 'last'],
-              'vue/html-comment-content-spacing': [
-                'error',
-                'always',
-                {
-                  exceptions: ['-'],
-                },
-              ],
-              'vue/key-spacing': [
-                'error',
-                { afterColon: true, beforeColon: false },
-              ],
+              'vue/html-comment-content-spacing': ['error', 'always', {
+                exceptions: ['-'],
+              }],
+              'vue/key-spacing': ['error', { afterColon: true, beforeColon: false }],
               'vue/keyword-spacing': ['error', { after: true, before: true }],
               'vue/object-curly-newline': 'off',
               'vue/object-curly-spacing': ['error', 'always'],
-              'vue/object-property-newline': [
-                'error',
-                { allowMultiplePropertiesPerLine: true },
-              ],
+              'vue/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
               'vue/operator-linebreak': ['error', 'before'],
               'vue/padding-line-between-blocks': ['error', 'always'],
               'vue/quote-props': ['error', 'consistent-as-needed'],
               'vue/space-in-parens': ['error', 'never'],
               'vue/template-curly-spacing': 'error',
             }
-          : {}),
+          : {},
+
         ...overrides,
       },
     },
